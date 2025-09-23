@@ -94,8 +94,3 @@ Esse protótipo será a base para futuros sistemas corporativos mais robustos, p
 - Integração com **sensores IoT** para monitoramento automático de estoque  
 - Integração com sistemas ERP  
 - Controle de usuários com **níveis de acesso (comum / administrador)**  
-
----
-
-## 👨‍💻 Autoria
-Desenvolvido como protótipo de sistema para avaliação das **capacidades C1 e C2** do curso de Programação de Sistemas.
