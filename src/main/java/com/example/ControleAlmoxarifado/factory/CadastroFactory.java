@@ -1,4 +1,7 @@
 package com.example.ControleAlmoxarifado.factory;
 
-public class CadastroFactory {
+import com.example.ControleAlmoxarifado.dto.DTObase;
+
+public interface CadastroFactory<object> {
+    object criar(DTObase... dtos);
 }
