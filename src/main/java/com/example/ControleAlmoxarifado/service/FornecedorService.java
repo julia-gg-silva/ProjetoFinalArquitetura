@@ -2,6 +2,7 @@ package com.example.ControleAlmoxarifado.service;
 
 import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
 import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRespostaDTO;
+import com.example.ControleAlmoxarifado.factory.FornecedorFactory;
 import com.example.ControleAlmoxarifado.mapper.FornecedorMapper;
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 import com.example.ControleAlmoxarifado.repository.FornecedorDAO;
@@ -15,10 +16,12 @@ public class FornecedorService {
 
     private FornecedorDAO repository;
     private FornecedorMapper mapper;
+    private FornecedorFactory factory;
 
-    public FornecedorService(FornecedorDAO repository, FornecedorMapper mapper){
+    public FornecedorService(FornecedorDAO repository, FornecedorMapper mapper, FornecedorFactory factory) {
         this.repository = repository;
         this.mapper = mapper;
+        this.factory = factory;
     }
 
     public CriacaoFornecedorRespostaDTO criar (
@@ -36,7 +39,9 @@ public class FornecedorService {
             throw new RuntimeException("Cnpj do fornecedor é obrigatório!");
         }
 
-        return mapper.paraRespostaDTO(repository.criar(mapper.paraEntidade(requisicaoDTO)));
+        Fornecedor fornecedor = factory.criar(requisicaoDTO);
+
+        return mapper.paraRespostaDTO(repository.criar(fornecedor));
     }
 
     public List<CriacaoFornecedorRespostaDTO> buscarTodos() throws SQLException{

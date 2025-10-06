@@ -2,6 +2,7 @@ package com.example.ControleAlmoxarifado.service;
 
 import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
 import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRespostaDTO;
+import com.example.ControleAlmoxarifado.factory.MaterialFactory;
 import com.example.ControleAlmoxarifado.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.repository.MaterialDAO;
@@ -15,10 +16,12 @@ public class MaterialService {
 
     private MaterialDAO repository;
     private MaterialMapper mapper;
+    private MaterialFactory factory;
 
-    public MaterialService(MaterialDAO repository, MaterialMapper mapper) throws SQLException {
+    public MaterialService(MaterialDAO repository, MaterialMapper mapper, MaterialFactory factory) {
         this.repository = repository;
         this.mapper = mapper;
+        this.factory = factory;
     }
 
     public CriacaoMaterialRespostaDTO criar(CriacaoMaterialRequisicaoDTO requisicaoDTO) throws SQLException{
@@ -34,7 +37,9 @@ public class MaterialService {
             throw new RuntimeException("Valor de estoque inválido");
         }
 
-        return mapper.paraRespostaDto(repository.criar(mapper.paraEntidade(requisicaoDTO)));
+        Material material = factory.criar(requisicaoDTO);
+
+        return mapper.paraRespostaDto(repository.criar(material));
     }
 
     public List<CriacaoMaterialRespostaDTO> buscarTodos() throws SQLException{
@@ -65,7 +70,7 @@ public class MaterialService {
         return mapper.paraRespostaDto(newMaterial);
     }
 
-    public void excluir(int id) throws SQLException{
+    public void excluir(int id) throws SQLException {
         Material material = repository.buscarPorId(id);
 
         if(material == null){
