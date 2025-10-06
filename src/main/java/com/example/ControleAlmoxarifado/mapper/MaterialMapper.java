@@ -28,7 +28,6 @@ public class MaterialMapper {
         if(requisicaoDTO.estoque() != material.getEstoque() && requisicaoDTO.estoque() != 0){
             material.setNome(requisicaoDTO.nome());
         }
-
         return material;
     }
 }
