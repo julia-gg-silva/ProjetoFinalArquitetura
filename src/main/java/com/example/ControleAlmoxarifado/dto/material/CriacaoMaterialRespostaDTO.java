@@ -1,4 +1,9 @@
 package com.example.ControleAlmoxarifado.dto.material;
 
-public class CriacaoMaterialRespostaDTO {
+public record CriacaoMaterialRespostaDTO(
+        int id,
+        String nome,
+        String unidade,
+        double estoque
+) {
 }

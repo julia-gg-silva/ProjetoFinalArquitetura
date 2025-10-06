@@ -1,4 +1,8 @@
 package com.example.ControleAlmoxarifado.dto.material;
 
-public class CriacaoMaterialRequisicaoDTO {
+public record CriacaoMaterialRequisicaoDTO(
+        String nome,
+        String unidade,
+        double estoque
+) {
 }
