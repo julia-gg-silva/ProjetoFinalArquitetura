@@ -25,7 +25,7 @@ public class FornecedorDAO {
 
             ResultSet rs = stmt.getGeneratedKeys();
             if(rs.next()){
-                fornecedor.setId(rs.getInt("id"));
+                fornecedor.setId(rs.getInt(1));
             }
         }
         return fornecedor;
@@ -89,7 +89,7 @@ public class FornecedorDAO {
     }
 
     public void deletar(int id) throws SQLException{
-        String query = "DELETE Fornecedor WHERE id = ?";
+        String query = "DELETE FROM Fornecedor WHERE id = ?";
 
         try(Connection conn = Conexao.conectar();
             PreparedStatement stmt = conn.prepareStatement(query)){

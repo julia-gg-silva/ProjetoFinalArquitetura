@@ -28,6 +28,7 @@ public class FornecedorController {
                     .body(service.criar(requisicaoDTO));
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
         }
@@ -65,6 +66,7 @@ public class FornecedorController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(service.atualizar(id, requisicaoDTO));
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
         }
@@ -77,6 +79,7 @@ public class FornecedorController {
             return  ResponseEntity.status(HttpStatus.OK)
                     .build();
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
         }
