@@ -30,6 +30,10 @@ public class MaterialService {
             throw new RuntimeException("O nome do material é obrigatório!");
         }
 
+        if(requisicaoDTO.estoque() < 0){
+            throw new RuntimeException("Valor de estoque inválido");
+        }
+
         return mapper.paraRespostaDto(repository.criar(mapper.paraEntidade(requisicaoDTO)));
     }
 
