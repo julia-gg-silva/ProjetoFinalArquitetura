@@ -23,6 +23,19 @@ public class FornecedorService {
 
     public CriacaoFornecedorRespostaDTO criar (
             CriacaoFornecedorRequisicaoDTO requisicaoDTO) throws SQLException {
+
+        if(repository.nomeExiste(requisicaoDTO.nome())){
+            throw new RuntimeException("Nome do fornecedor já existe!");
+        }
+
+        if(requisicaoDTO.nome() == null){
+            throw new RuntimeException("Nome do fornecedor é obrigatório!");
+        }
+
+        if(requisicaoDTO.cnpj() == null){
+            throw new RuntimeException("Cnpj do fornecedor é obrigatório!");
+        }
+
         return mapper.paraRespostaDTO(repository.criar(mapper.paraEntidade(requisicaoDTO)));
     }
 

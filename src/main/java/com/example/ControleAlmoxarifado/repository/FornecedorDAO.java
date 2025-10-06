@@ -99,5 +99,22 @@ public class FornecedorDAO {
         }
     }
 
+    public boolean nomeExiste(String nome) throws SQLException{
+        String query = "SELECT id FROM Fornecedor WHERE nome = ?";
+
+        try(Connection conn = Conexao.conectar();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 }
