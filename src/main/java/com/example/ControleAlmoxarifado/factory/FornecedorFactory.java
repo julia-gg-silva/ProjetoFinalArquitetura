@@ -4,7 +4,9 @@ import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisic
 import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
 import com.example.ControleAlmoxarifado.mapper.FornecedorMapper;
 import com.example.ControleAlmoxarifado.model.Fornecedor;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FornecedorFactory implements EntityFactory<Fornecedor, CriacaoFornecedorRequisicaoDTO>{
     private final FornecedorMapper mapper;
 

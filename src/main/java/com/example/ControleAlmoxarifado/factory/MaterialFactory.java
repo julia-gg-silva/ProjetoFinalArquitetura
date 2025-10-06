@@ -14,7 +14,6 @@ public class MaterialFactory implements EntityFactory<Material, CriacaoMaterialR
         this.mapper = mapper;
     }
 
-
     @Override
     public Material criar(CriacaoMaterialRequisicaoDTO dto) {
         return mapper.paraEntidade(dto);
