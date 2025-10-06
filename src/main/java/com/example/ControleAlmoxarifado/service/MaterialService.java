@@ -27,7 +27,7 @@ public class MaterialService {
         }
 
         if(requisicaoDTO.nome().isEmpty()){
-            throw new RuntimeException("O nome do material é obrigatório");
+            throw new RuntimeException("O nome do material é obrigatório!");
         }
 
         return mapper.paraRespostaDto(repository.criar(mapper.paraEntidade(requisicaoDTO)));
