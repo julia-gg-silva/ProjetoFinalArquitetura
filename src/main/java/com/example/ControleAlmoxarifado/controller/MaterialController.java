@@ -24,6 +24,7 @@ public class MaterialController {
         try{
             return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(requisicaoDTO));
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -33,6 +34,7 @@ public class MaterialController {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodos());
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -42,16 +44,18 @@ public class MaterialController {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorId(id));
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<CriacaoMaterialRespostaDTO> atualizar(@PathVariable int id,
                                                                 @RequestBody CriacaoMaterialRequisicaoDTO requisicaoDTO){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.atualizar(id, requisicaoDTO));
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -63,6 +67,7 @@ public class MaterialController {
             service.excluir(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

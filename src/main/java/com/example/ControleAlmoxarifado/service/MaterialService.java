@@ -26,7 +26,7 @@ public class MaterialService {
             throw new RuntimeException("O nome do material já existe!");
         }
 
-        if(requisicaoDTO.nome().isEmpty()){
+        if(requisicaoDTO.nome() == null){
             throw new RuntimeException("O nome do material é obrigatório!");
         }
 

@@ -22,11 +22,11 @@ public class MaterialMapper {
         }
 
         if(!requisicaoDTO.unidade().equals(material.getUnidade()) && !requisicaoDTO.unidade().isEmpty()){
-            material.setNome(requisicaoDTO.nome());
+            material.setUnidade(requisicaoDTO.unidade());
         }
 
         if(requisicaoDTO.estoque() != material.getEstoque() && requisicaoDTO.estoque() != 0){
-            material.setNome(requisicaoDTO.nome());
+            material.setEstoque(requisicaoDTO.estoque());
         }
 
         return material;
