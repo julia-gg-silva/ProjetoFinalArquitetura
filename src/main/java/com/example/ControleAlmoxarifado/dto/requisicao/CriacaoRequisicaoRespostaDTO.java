@@ -9,6 +9,5 @@ public record CriacaoRequisicaoRespostaDTO(
         LocalDate dataSolicitacao,
         String status,
         HashMap<String, Double> materiais
-
 ) {
 }
