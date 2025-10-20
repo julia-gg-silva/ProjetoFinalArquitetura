@@ -28,9 +28,10 @@ public class RequisicaoService {
     }
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
-       Requisicao requisicao = repository.criar(mapper.paraEntidade(requisicaoDTO));
+       Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO));
+
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
-            repositoryItem.criar(itemMapper.paraEntidade(requisicao.getId(), idMaterial, quantidade));
+            repositoryItem.save(itemMapper.paraEntidade(requisicao.getId(), idMaterial, quantidade));
         });
     }
 

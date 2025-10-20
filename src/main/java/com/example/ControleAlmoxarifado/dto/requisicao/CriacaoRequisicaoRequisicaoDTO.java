@@ -10,6 +10,6 @@ public record CriacaoRequisicaoRequisicaoDTO(
         String setor,
         LocalDate dataSolicitacao,
         String status,
-        HashMap<Integer, Double> materiais
+        HashMap<Long, Double> materiais
 ) {
 }
