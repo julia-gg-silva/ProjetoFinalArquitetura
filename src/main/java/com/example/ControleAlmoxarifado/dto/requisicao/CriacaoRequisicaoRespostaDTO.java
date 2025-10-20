@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 public record CriacaoRequisicaoRespostaDTO(
-        int id,
+        Long id,
         String setor,
         LocalDate dataSolicitacao,
         String status,

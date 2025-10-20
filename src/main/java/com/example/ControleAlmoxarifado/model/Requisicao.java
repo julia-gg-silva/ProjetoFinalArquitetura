@@ -1,19 +1,35 @@
 package com.example.ControleAlmoxarifado.model;
 
+import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "requisicao")
 public class Requisicao {
-    private int id;
-    private String setor;
-    private LocalDate dataSolicitacao;
-    private String status;
 
-    public Requisicao(int id, String setor, LocalDate dataSolicitacao, String status) {
-        this.id = id;
-        this.setor = setor;
-        this.dataSolicitacao = dataSolicitacao;
-        this.status = status;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String setor;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, name = "data_solicitacao")
+    private LocalDate dataSolicitacao;
+
+    @Column(nullable = false)
+    private String status;
 
     public Requisicao(String setor, LocalDate dataSolicitacao, String status) {
         this.setor = setor;
@@ -21,35 +37,4 @@ public class Requisicao {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSetor() {
-        return setor;
-    }
-
-    public void setSetor(String setor) {
-        this.setor = setor;
-    }
-
-    public LocalDate getDataSolicitacao() {
-        return dataSolicitacao;
-    }
-
-    public void setDataSolicitacao(LocalDate dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

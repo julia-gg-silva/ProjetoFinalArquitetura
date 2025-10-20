@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class RequisicaoItemMapper {
 
-    public RequisicaoItem paraEntidade(int idRequisicao, int idMaterial, double quantidade){
+    public RequisicaoItem paraEntidade(Long idRequisicao, Long idMaterial, double quantidade){
         return new RequisicaoItem(idRequisicao, idMaterial, quantidade);
     }
 

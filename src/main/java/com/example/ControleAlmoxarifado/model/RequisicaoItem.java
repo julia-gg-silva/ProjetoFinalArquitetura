@@ -1,38 +1,35 @@
 package com.example.ControleAlmoxarifado.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "requisicao-item")
 public class RequisicaoItem {
-    private int idRequisicao;
-    private int idMaterial;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "id_requisicao", nullable = false)
+    private Long idRequisicao;
+
+    @Column(name = "id_material", nullable = false)
+    private Long idMaterial;
+
+    @Column(nullable = false, precision = 10, scale = 2)
     private double quantidade;
 
 
-    public RequisicaoItem(int idRequisicao, int idMaterial, double quantidade) {
+    public RequisicaoItem(Long idRequisicao, Long idMaterial, double quantidade) {
         this.idRequisicao = idRequisicao;
         this.idMaterial = idMaterial;
-        this.quantidade = quantidade;
-    }
-
-    public int getIdRequisicao() {
-        return idRequisicao;
-    }
-
-    public void setIdRequisicao(int idRequisicao) {
-        this.idRequisicao = idRequisicao;
-    }
-
-    public int getIdMaterial() {
-        return idMaterial;
-    }
-
-    public void setIdMaterial(int idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
 }

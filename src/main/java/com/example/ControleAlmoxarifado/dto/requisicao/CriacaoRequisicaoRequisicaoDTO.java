@@ -16,7 +16,11 @@ public record CriacaoRequisicaoRequisicaoDTO(
         LocalDate dataSolicitacao,
         @NotBlank(message = "O status é orbigatório!")
         String status,
+<<<<<<< HEAD
+        HashMap<Long, Double> materiais
+=======
         @NotEmpty(message = "A lista de materiais não pode ser vazia!")
         HashMap<Integer, Double> materiais
+>>>>>>> 7afa960ebc86af61f59f5d11de5e6758260710ae
 ) {
 }
