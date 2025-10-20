@@ -6,23 +6,19 @@ import com.example.ControleAlmoxarifado.factory.FornecedorFactory;
 import com.example.ControleAlmoxarifado.mapper.FornecedorMapper;
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 import com.example.ControleAlmoxarifado.repository.FornecedorRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class FornecedorService {
 
     private FornecedorRepository repository;
     private FornecedorMapper mapper;
     private FornecedorFactory factory;
-
-    public FornecedorService(FornecedorRepository repository, FornecedorMapper mapper, FornecedorFactory factory) {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.factory = factory;
-    }
 
     public CriacaoFornecedorRespostaDTO criar (
             CriacaoFornecedorRequisicaoDTO requisicaoDTO) {

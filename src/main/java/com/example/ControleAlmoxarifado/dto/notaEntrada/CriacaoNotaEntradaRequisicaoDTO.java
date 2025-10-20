@@ -14,8 +14,6 @@ public record CriacaoNotaEntradaRequisicaoDTO(
         @NotNull(message = "O id do fornecedor é obrigatório!")
         @Positive(message = "O id do fornecedor tem que ser maior que zero!")
         Fornecedor fornecedor,
-        @NotNull(message = "A data é obrigatória!")
-        LocalDate dataEntrada,
         @NotEmpty(message = "A lista de materiais é obrigatória!")
         HashMap<Long, Double> materiais
 ) {

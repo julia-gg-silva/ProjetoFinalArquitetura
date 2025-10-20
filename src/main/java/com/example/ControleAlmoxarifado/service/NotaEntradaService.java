@@ -10,8 +10,10 @@ import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaItemRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@AllArgsConstructor
 public class NotaEntradaService {
 
     private NotaEntradaRepository repository;
@@ -27,16 +30,8 @@ public class NotaEntradaService {
     private NotaEntradaItemMapper mapperItem;
     private MaterialRepository repositoryMaterial;
 
-    public NotaEntradaService(NotaEntradaRepository repository, NotaEntradaItemRepository repositoryItem, NotaEntradaMapper mapper, NotaEntradaItemMapper mapperItem, MaterialRepository repositoryMaterial) {
-        this.repository = repository;
-        this.repositoryItem = repositoryItem;
-        this.mapper = mapper;
-        this.mapperItem = mapperItem;
-        this.repositoryMaterial = repositoryMaterial;
-    }
-
     public CriacaoNotaEntradaRespostaDTO criar(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO) {
-        NotaEntrada notaEntrada = repository.save(mapper.paraEntidade(requisicaoDTO));
+        NotaEntrada notaEntrada = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now()));
 
         HashMap<String, Double> materiais = new HashMap<>();
 

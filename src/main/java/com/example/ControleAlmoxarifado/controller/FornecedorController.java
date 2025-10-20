@@ -3,6 +3,7 @@ package com.example.ControleAlmoxarifado.controller;
 import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
 import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRespostaDTO;
 import com.example.ControleAlmoxarifado.service.FornecedorService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fornecedores")
+@AllArgsConstructor
 public class FornecedorController {
 
     private FornecedorService service;
-
-    public FornecedorController(FornecedorService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<CriacaoFornecedorRespostaDTO> criar(

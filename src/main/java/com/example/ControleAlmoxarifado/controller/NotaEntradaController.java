@@ -3,6 +3,7 @@ package com.example.ControleAlmoxarifado.controller;
 import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
 import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
 import com.example.ControleAlmoxarifado.service.NotaEntradaService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notasEntrada")
+@AllArgsConstructor
 public class NotaEntradaController {
 
     private NotaEntradaService service;
-
-    public NotaEntradaController(NotaEntradaService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<CriacaoNotaEntradaRespostaDTO> criar(@RequestBody CriacaoNotaEntradaRequisicaoDTO requisicaoDTO){
