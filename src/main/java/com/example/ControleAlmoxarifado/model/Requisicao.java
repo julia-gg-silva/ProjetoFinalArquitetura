@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -30,6 +31,9 @@ public class Requisicao {
 
     @Column(nullable = false)
     private String status;
+
+    @OneToMany(mappedBy = "requisicao", cascade = CascadeType.ALL)
+    private List<RequisicaoItem> itens;
 
     public Requisicao(String setor, LocalDate dataSolicitacao, String status) {
         this.setor = setor;

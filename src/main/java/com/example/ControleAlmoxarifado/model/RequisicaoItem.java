@@ -17,19 +17,21 @@ public class RequisicaoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_requisicao", nullable = false)
-    private Long idRequisicao;
+    @ManyToOne
+    @JoinColumn(name = "id_requisicao", nullable = false)
+    private Requisicao requisicao;
 
-    @Column(name = "id_material", nullable = false)
-    private Long idMaterial;
+    @ManyToOne
+    @JoinColumn(name = "id_material", nullable = false)
+    private Material material;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private double quantidade;
 
 
-    public RequisicaoItem(Long idRequisicao, Long idMaterial, double quantidade) {
-        this.idRequisicao = idRequisicao;
-        this.idMaterial = idMaterial;
+    public RequisicaoItem(Requisicao requisicao, Material material, double quantidade) {
+        this.requisicao = requisicao;
+        this.material = material;
         this.quantidade = quantidade;
     }
 }

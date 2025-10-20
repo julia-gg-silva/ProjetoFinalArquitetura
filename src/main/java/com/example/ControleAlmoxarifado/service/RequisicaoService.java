@@ -6,6 +6,7 @@ import com.example.ControleAlmoxarifado.mapper.RequisicaoItemMapper;
 import com.example.ControleAlmoxarifado.mapper.RequisicaoMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
+import com.example.ControleAlmoxarifado.model.RequisicaoItem;
 import com.example.ControleAlmoxarifado.repository.MaterialDAO;
 import com.example.ControleAlmoxarifado.repository.RequisicaoDAO;
 import com.example.ControleAlmoxarifado.repository.RequisicaoItemDAO;
@@ -53,6 +54,18 @@ public class RequisicaoService {
     }
 
     public List<CriacaoRequisicaoRespostaDTO> buscarTodos(){
+        HashMap<String, Double> nomeMaterias = new HashMap<>();
+        List<RequisicaoItem> requisicoesItens = repositoryItem.findAll();
+
+        for(RequisicaoItem r : requisicoesItens){
+            List<Long> idsMaterial = Collections.singletonList(r.getMaterial().getId());
+
+
+        }
+
+        repository.findAll().stream()
+                 .map(mapper::paraRespostaDTO)
+                 .toList();
 
     }
 
