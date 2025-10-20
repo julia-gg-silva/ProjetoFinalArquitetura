@@ -7,7 +7,7 @@ import com.example.ControleAlmoxarifado.mapper.NotaEntradaMapper;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaDAO;
-import com.example.ControleAlmoxarifado.repository.NotaEntradaItemDAO;
+import com.example.ControleAlmoxarifado.repository.NotaEntradaItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import java.util.List;
 public class NotaEntradaService {
 
     private NotaEntradaDAO repository;
-    private NotaEntradaItemDAO repositoryItem;
+    private NotaEntradaItemRepository repositoryItem;
     private NotaEntradaMapper mapper;
     private NotaEntradaItemMapper mapperItem;
 
-    public NotaEntradaService(NotaEntradaDAO repository, NotaEntradaItemDAO repositoryItem, NotaEntradaMapper mapper, NotaEntradaItemMapper mapperItem) {
+    public NotaEntradaService(NotaEntradaDAO repository, NotaEntradaItemRepository repositoryItem, NotaEntradaMapper mapper, NotaEntradaItemMapper mapperItem) {
         this.repository = repository;
         this.repositoryItem = repositoryItem;
         this.mapper = mapper;
