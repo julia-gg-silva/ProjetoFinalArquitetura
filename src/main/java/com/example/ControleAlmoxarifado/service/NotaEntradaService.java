@@ -7,7 +7,6 @@ import com.example.ControleAlmoxarifado.mapper.NotaEntradaMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
-import com.example.ControleAlmoxarifado.repository.MaterialDAO;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaItemRepository;
