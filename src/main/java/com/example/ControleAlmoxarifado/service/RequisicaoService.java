@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RequisicaoService {
@@ -27,7 +28,6 @@ public class RequisicaoService {
     private RequisicaoItemMapper itemMapper;
 
 
-
     public RequisicaoService(RequisicaoDAO repository, RequisicaoMapper mapper, RequisicaoItemDAO itemRepository) {
         this.repository = repository;
         this.mapper = mapper;
@@ -35,17 +35,17 @@ public class RequisicaoService {
     }
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
-       Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
+        Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
         HashMap<String, Double> nomeMateriais = new HashMap<>();
 
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
             repositoryItem.save(itemMapper.paraEntidade(requisicao.getId(), idMaterial, quantidade));
             List<Material> material = repositoryMaterial.findAllById(Collections.singleton(idMaterial));
             List<String> nomesMaterias = material.stream()
-                            .map(Material::getNome)
-                                    .toList();
+                    .map(Material::getNome)
+                    .toList();
 
-            for(String s: nomesMaterias){
+            for (String s : nomesMaterias) {
                 nomeMateriais.put(s, quantidade);
             }
         });
@@ -53,25 +53,30 @@ public class RequisicaoService {
         return mapper.paraRespostaDTO(requisicao, nomeMateriais);
     }
 
-    public List<CriacaoRequisicaoRespostaDTO> buscarTodos(){
-        HashMap<String, Double> nomeMaterias = new HashMap<>();
-        List<RequisicaoItem> requisicoesItens = repositoryItem.findAll();
+    public List<CriacaoRequisicaoRespostaDTO> buscarTodos() {
+        List<Requisicao> requisicao = repository.findAll();
 
-        for(RequisicaoItem r : requisicoesItens){
-            List<Long> idsMaterial = Collections.singletonList(r.getMaterial().getId());
+        return requisicao.stream()
+                .map(r -> {
+                    HashMap<String, Double> nomeMateriais = new HashMap<>();
+                    List<RequisicaoItem> itens = repositoryItem.findByRequisicao(r.getId());
 
+                    for (RequisicaoItem item : itens) {
+                        nomeMateriais.put(item.getMaterial().getNome(), item.getQuantidade());
+                    }
 
-        }
+                    return mapper.paraRespostaDTO(r, nomeMateriais);
+                })
+                .collect(Collectors.toList());
+    }
 
-        repository.findAll().stream()
-                 .map(mapper::paraRespostaDTO)
-                 .toList();
+    public CriacaoRequisicaoRespostaDTO buscarPorId(Long id) {
+        Requisicao requisicao = repository.findById(id).orElseThrow(() ->{
+            throw new RuntimeException("A Requisicao não encontrada!");
+        });
 
     }
 
-    public CriacaoRequisicaoRespostaDTO buscarPorId(int id) {
-
-    }
 
     public CriacaoRequisicaoRespostaDTO atualizar(int id, CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
 
