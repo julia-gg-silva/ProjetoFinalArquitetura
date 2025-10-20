@@ -8,6 +8,7 @@ import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
 import com.example.ControleAlmoxarifado.repository.MaterialDAO;
+import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaRepository;
 import com.example.ControleAlmoxarifado.repository.NotaEntradaItemRepository;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,9 @@ public class NotaEntradaService {
     private NotaEntradaItemRepository repositoryItem;
     private NotaEntradaMapper mapper;
     private NotaEntradaItemMapper mapperItem;
-    private MaterialDAO repositoryMaterial;
+    private MaterialRepository repositoryMaterial;
 
-    public NotaEntradaService(NotaEntradaRepository repository, NotaEntradaItemRepository repositoryItem, NotaEntradaMapper mapper, NotaEntradaItemMapper mapperItem, MaterialDAO repositoryMaterial) {
+    public NotaEntradaService(NotaEntradaRepository repository, NotaEntradaItemRepository repositoryItem, NotaEntradaMapper mapper, NotaEntradaItemMapper mapperItem, MaterialRepository repositoryMaterial) {
         this.repository = repository;
         this.repositoryItem = repositoryItem;
         this.mapper = mapper;
