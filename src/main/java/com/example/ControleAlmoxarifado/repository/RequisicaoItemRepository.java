@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RequisicaoItemDAO extends JpaRepository<RequisicaoItem, Long> {
+public interface RequisicaoItemRepository extends JpaRepository<RequisicaoItem, Long> {
     List<RequisicaoItem> findByRequisicao(Long requisicao);
 
 

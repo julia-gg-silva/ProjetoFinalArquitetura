@@ -5,7 +5,7 @@ import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRespostaDTO;
 import com.example.ControleAlmoxarifado.factory.MaterialFactory;
 import com.example.ControleAlmoxarifado.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
-import com.example.ControleAlmoxarifado.repository.MaterialDAO;
+import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -14,18 +14,18 @@ import java.util.List;
 @Service
 public class MaterialService {
 
-    private MaterialDAO repository;
+    private MaterialRepository repository;
     private MaterialMapper mapper;
     private MaterialFactory factory;
 
-    public MaterialService(MaterialDAO repository, MaterialMapper mapper, MaterialFactory factory) {
+    public MaterialService(MaterialRepository repository, MaterialMapper mapper, MaterialFactory factory) {
         this.repository = repository;
         this.mapper = mapper;
         this.factory = factory;
     }
 
     public CriacaoMaterialRespostaDTO criar(CriacaoMaterialRequisicaoDTO requisicaoDTO) throws SQLException{
-        if(repository.nomeExiste(requisicaoDTO.nome())){
+        if(repository.getByNome(requisicaoDTO.nome())){
             throw new RuntimeException("O nome do material já existe!");
         }
 
@@ -39,44 +39,35 @@ public class MaterialService {
 
         Material material = factory.criar(requisicaoDTO);
 
-        return mapper.paraRespostaDto(repository.criar(material));
+        return mapper.paraRespostaDto(repository.save(material));
     }
 
     public List<CriacaoMaterialRespostaDTO> buscarTodos() throws SQLException{
-        return repository.buscarTodos().stream()
+        return repository.findAll().stream()
                 .map(mapper::paraRespostaDto)
                 .toList();
     }
 
-    public CriacaoMaterialRespostaDTO buscarPorId(int id) throws SQLException{
-        Material material = repository.buscarPorId(id);
-
-        if(material == null){
-            throw new RuntimeException("Material não existe!");
-        }
+    public CriacaoMaterialRespostaDTO buscarPorId(Long id) throws SQLException{
+        Material material = repository.findById(id).orElseThrow(() ->
+                new RuntimeException("Material não existe!"));
 
         return mapper.paraRespostaDto(material);
     }
 
-    public CriacaoMaterialRespostaDTO atualizar(int id, CriacaoMaterialRequisicaoDTO requisicaoDTO) throws SQLException{
-        Material material = repository.buscarPorId(id);
-
-        if(material == null){
-            throw new RuntimeException("Material não existe!");
-        }
+    public CriacaoMaterialRespostaDTO atualizar(Long id, CriacaoMaterialRequisicaoDTO requisicaoDTO) throws SQLException{
+        Material material = repository.findById(id).orElseThrow(() ->
+                new RuntimeException("Material não existe!"));
 
         Material newMaterial = mapper.paraUpdate(material, requisicaoDTO);
-        repository.atualizar(id, newMaterial);
+        repository.save(newMaterial);
         return mapper.paraRespostaDto(newMaterial);
     }
 
-    public void excluir(int id) throws SQLException {
-        Material material = repository.buscarPorId(id);
+    public void excluir(Long id) throws SQLException {
+        Material material = repository.findById(id).orElseThrow(() ->
+                new RuntimeException("Material não existe!"));
 
-        if(material == null){
-            throw new RuntimeException("Material não existe!");
-        }
-
-        repository.excluir(id);
+        repository.delete(material);
     }
 }

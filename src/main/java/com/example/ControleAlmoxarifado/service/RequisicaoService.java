@@ -7,9 +7,9 @@ import com.example.ControleAlmoxarifado.mapper.RequisicaoMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;
-import com.example.ControleAlmoxarifado.repository.MaterialDAO;
-import com.example.ControleAlmoxarifado.repository.RequisicaoDAO;
-import com.example.ControleAlmoxarifado.repository.RequisicaoItemDAO;
+import com.example.ControleAlmoxarifado.repository.MaterialRepository;
+import com.example.ControleAlmoxarifado.repository.RequisicaoRepository;
+import com.example.ControleAlmoxarifado.repository.RequisicaoItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 @Service
 public class RequisicaoService {
 
-    private RequisicaoDAO repository;
-    private RequisicaoItemDAO repositoryItem;
-    private MaterialDAO repositoryMaterial;
+    private RequisicaoRepository repository;
+    private RequisicaoItemRepository repositoryItem;
+    private MaterialRepository repositoryMaterial;
     private RequisicaoMapper mapper;
     private RequisicaoItemMapper itemMapper;
 
 
-    public RequisicaoService(RequisicaoDAO repository, RequisicaoMapper mapper, RequisicaoItemDAO itemRepository) {
+    public RequisicaoService(RequisicaoRepository repository, RequisicaoMapper mapper, RequisicaoItemRepository itemRepository) {
         this.repository = repository;
         this.mapper = mapper;
         this.repositoryItem = itemRepository;
