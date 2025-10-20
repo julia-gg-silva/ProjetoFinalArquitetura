@@ -11,13 +11,21 @@ import java.util.HashMap;
 public class NotaEntradaMapper {
 
     public NotaEntrada paraEntidade(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO){
-        return new NotaEntrada(requisicaoDTO.idFornecedor(), requisicaoDTO.dataEntrada());
+        return new NotaEntrada(requisicaoDTO.fornecedor(), requisicaoDTO.dataEntrada());
     }
 
     public CriacaoNotaEntradaRespostaDTO paraRespostaDto(NotaEntrada notaEntrada, HashMap<String, Double> materiais){
         return new CriacaoNotaEntradaRespostaDTO(notaEntrada.getId(),
-                notaEntrada.getIdFornecedor(),
+                notaEntrada.getFornecedor(),
                 notaEntrada.getDataEntrega(),
                 materiais);
+    }
+
+    public NotaEntrada paraUpdate(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO, NotaEntrada notaEntrada){
+        if(!requisicaoDTO.fornecedor().equals(notaEntrada.getFornecedor())){
+            notaEntrada.setFornecedor(requisicaoDTO.fornecedor());
+        }
+
+        return notaEntrada;
     }
 }

@@ -1,45 +1,38 @@
 package com.example.ControleAlmoxarifado.model;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "nota_entrada")
 public class NotaEntrada {
 
-    private int id;
-    private int idFornecedor;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fornecedor", nullable = false)
+    private Fornecedor fornecedor;
+
+    @Column(nullable = false)
     private LocalDate dataEntrega;
 
-    public NotaEntrada(int id, int idFornecedor, LocalDate dataEntrega) {
-        this.id = id;
-        this.idFornecedor = idFornecedor;
-        this.dataEntrega = dataEntrega;
-    }
+    @OneToMany(mappedBy = "nota_entrada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NotaEntradaItem> itens;
 
-    public NotaEntrada(int idFornecedor, LocalDate dataEntrega) {
-        this.idFornecedor = idFornecedor;
-        this.dataEntrega = dataEntrega;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(int idFornecedor) {
-        this.idFornecedor = idFornecedor;
-    }
-
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
-    }
-
-    public void setDataEntrega(LocalDate dataEntrega) {
+    public NotaEntrada(Fornecedor fornecedor, LocalDate dataEntrega) {
+        this.fornecedor = fornecedor;
         this.dataEntrega = dataEntrega;
     }
 }

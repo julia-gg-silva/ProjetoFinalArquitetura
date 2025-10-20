@@ -1,38 +1,37 @@
 package com.example.ControleAlmoxarifado.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "nota_entrada_item")
 public class NotaEntradaItem {
 
-    private int idNotaEntrada;
-    private int idMaterial;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_nota_entrada", nullable = false)
+    private NotaEntrada notaEntrada;
+
+    @ManyToOne
+    @JoinColumn(name = "id_material", nullable = false)
+    private Material material;
+
+    @Column(nullable = false)
     private double quantidade;
 
-    public NotaEntradaItem(int idNotaEntrada, int idMaterial, double quantidade) {
-        this.idNotaEntrada = idNotaEntrada;
-        this.idMaterial = idMaterial;
-        this.quantidade = quantidade;
-    }
-
-    public int getIdNotaEntrada() {
-        return idNotaEntrada;
-    }
-
-    public void setIdNotaEntrada(int idNotaEntrada) {
-        this.idNotaEntrada = idNotaEntrada;
-    }
-
-    public int getIdMaterial() {
-        return idMaterial;
-    }
-
-    public void setIdMaterial(int idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
+    public NotaEntradaItem(NotaEntrada notaEntrada, Material material, double quantidade) {
+        this.notaEntrada = notaEntrada;
+        this.material = material;
         this.quantidade = quantidade;
     }
 }

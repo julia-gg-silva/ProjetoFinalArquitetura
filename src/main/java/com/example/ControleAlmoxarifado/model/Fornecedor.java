@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +21,10 @@ public class Fornecedor {
     private Long id;
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
+    @OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NotaEntrada> notasEntrada;
 
     public Fornecedor(String nome, String cnpj) {
         this.nome = nome;

@@ -61,10 +61,6 @@ public class FornecedorService {
     }
 
     public void deletar(Long id) {
-        Fornecedor fornecedor = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("Fornecedor não encontrado!");
-        });
-
         repository.deleteById(id);
     }
 }
