@@ -21,48 +21,28 @@ public class NotaEntradaController {
 
     @PostMapping
     public ResponseEntity<CriacaoNotaEntradaRespostaDTO> criar(@RequestBody CriacaoNotaEntradaRequisicaoDTO requisicaoDTO){
-        try{
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(requisicaoDTO));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(requisicaoDTO));
     }
 
     @GetMapping
     public ResponseEntity<List<CriacaoNotaEntradaRespostaDTO>> buscarTodos(){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodos());
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CriacaoNotaEntradaRespostaDTO> buscarPorId(@PathVariable int id){
-        try{
+    public ResponseEntity<CriacaoNotaEntradaRespostaDTO> buscarPorId(@PathVariable Long id){
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorId(id));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CriacaoNotaEntradaRespostaDTO> atualizar(@PathVariable int id,
+    public ResponseEntity<CriacaoNotaEntradaRespostaDTO> atualizar(@PathVariable Long id,
                                                                    @RequestBody CriacaoNotaEntradaRequisicaoDTO requisicaoDTO){
-        try{
             return ResponseEntity.status(HttpStatus.OK).body(service.atualizar(id, requisicaoDTO));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable int id){
-        try{
-            service.excluir();
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<Void> excluir(@PathVariable Long id){
+        service.excluir(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

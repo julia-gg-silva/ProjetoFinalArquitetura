@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.dto.fornecedor;
 
 public record CriacaoFornecedorRespostaDTO(
-        int id,
+        Long id,
         String nome,
         String cnpj
 ) {
