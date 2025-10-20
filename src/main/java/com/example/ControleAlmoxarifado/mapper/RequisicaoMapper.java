@@ -5,14 +5,15 @@ import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoResposta
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 @Component
 public class RequisicaoMapper {
 
 
-    public Requisicao paraEntidade(CriacaoRequisicaoRequisicaoDTO requisicaoDTO){
-        return new Requisicao(requisicaoDTO.setor(), requisicaoDTO.dataSolicitacao(), requisicaoDTO.status());
+    public Requisicao paraEntidade(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, LocalDate dataSolicitacao, String status){
+        return new Requisicao(requisicaoDTO.setor(), dataSolicitacao, status);
     }
 
     public CriacaoRequisicaoRespostaDTO paraRespostaDTO(Requisicao requisicao, HashMap<String, Double> materiais){
