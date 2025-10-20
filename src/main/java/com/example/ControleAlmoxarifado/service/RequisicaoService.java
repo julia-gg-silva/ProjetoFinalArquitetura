@@ -78,12 +78,12 @@ public class RequisicaoService {
     }
 
 
-    public CriacaoRequisicaoRespostaDTO atualizar(int id, CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
+    public CriacaoRequisicaoRespostaDTO atualizar(Long id, CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
 
     }
 
 
-    public void deletar(int id) {
+    public void deletar(Long id) {
 
     }
 

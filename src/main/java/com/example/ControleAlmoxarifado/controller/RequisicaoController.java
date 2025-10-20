@@ -23,65 +23,35 @@ public class RequisicaoController {
     public ResponseEntity<CriacaoRequisicaoRespostaDTO> criar(
             @RequestBody CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
 
-        try {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(service.criar(requisicaoDTO));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
-        }
     }
 
     @GetMapping
     public ResponseEntity<List<CriacaoRequisicaoRespostaDTO>> buscarTodos() {
-        try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(service.buscarTodos());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
-        }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CriacaoRequisicaoRespostaDTO> buscarId(@PathVariable int id) {
-        try {
+    public ResponseEntity<CriacaoRequisicaoRespostaDTO> buscarId(@PathVariable Long id) {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(service.buscarPorId(id));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
-        }
+
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CriacaoRequisicaoRespostaDTO> atualizar(
-            @PathVariable int id, @RequestBody CriacaoRequisicaoRequisicaoDTO requisicaoDTO
+            @PathVariable Long id, @RequestBody CriacaoRequisicaoRequisicaoDTO requisicaoDTO
     ) {
-        try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(service.atualizar(id, requisicaoDTO));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
-        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable int id) {
-
-        try {
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
             service.deletar(id);
             return ResponseEntity.status(HttpStatus.OK)
                     .build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
-        }
     }
 }
