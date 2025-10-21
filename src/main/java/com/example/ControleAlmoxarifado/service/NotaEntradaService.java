@@ -37,11 +37,11 @@ public class NotaEntradaService {
 
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
             Material material = repositoryMaterial.findById(idMaterial).orElseThrow(() -> {
-                throw new RuntimeException("O material não encontrado!");
+                throw new RuntimeException("Material não encontrado!");
             });
             repositoryItem.save(mapperItem.paraEntidade(notaEntrada, material, quantidade));
 
-            materiais.put(material.getNome(), material.getEstoque());
+            materiais.put(material.getNome(), quantidade);
         });
 
         return mapper.paraRespostaDto(notaEntrada, materiais);
@@ -61,7 +61,7 @@ public class NotaEntradaService {
 
     public CriacaoNotaEntradaRespostaDTO buscarPorId(Long id) {
         NotaEntrada notaEntrada = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("O Nota de Entrada não encontrada!");
+            throw new RuntimeException("Nota de Entrada não encontrada!");
         });
 
         HashMap<String, Double> materias = retornarMateriais(notaEntrada);
@@ -73,7 +73,7 @@ public class NotaEntradaService {
         HashMap<String, Double> materias = new HashMap<>();
 
         for(NotaEntradaItem item : notaEntrada.getItens()){
-            materias.put(item.getMaterial().getNome(), item.getMaterial().getEstoque());
+            materias.put(item.getMaterial().getNome(), item.getQuantidade());
         }
 
         return materias;
@@ -81,7 +81,7 @@ public class NotaEntradaService {
 
     public CriacaoNotaEntradaRespostaDTO atualizar(Long id, CriacaoNotaEntradaRequisicaoDTO requisicaoDTO) {
         NotaEntrada notaEntrada = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("O Nota de Entrada não encontrada!");
+            throw new RuntimeException("Nota de Entrada não encontrada!");
         });
 
         HashMap<String, Double> materias = retornarMateriais(notaEntrada);
@@ -92,6 +92,10 @@ public class NotaEntradaService {
     }
 
     public void excluir(Long id) {
+        NotaEntrada notaEntrada = repository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException("Nota de Entrada não encontrada!");
+        });
+
         repository.deleteById(id);
     }
 }

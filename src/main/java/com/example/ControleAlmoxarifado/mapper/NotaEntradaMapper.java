@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class NotaEntradaMapper {
 
     public NotaEntrada paraEntidade(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO, LocalDate dataEntrada){
-        return new NotaEntrada(requisicaoDTO.fornecedor(), requisicaoDTO.dataEntrada());
+        return new NotaEntrada(requisicaoDTO.fornecedor(), dataEntrada);
     }
 
     public CriacaoNotaEntradaRespostaDTO paraRespostaDto(NotaEntrada notaEntrada, HashMap<String, Double> materiais){
