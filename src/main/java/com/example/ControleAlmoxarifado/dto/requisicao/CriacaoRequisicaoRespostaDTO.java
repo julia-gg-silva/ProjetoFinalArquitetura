@@ -1,5 +1,6 @@
 package com.example.ControleAlmoxarifado.dto.requisicao;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -8,6 +9,6 @@ public record CriacaoRequisicaoRespostaDTO(
         String setor,
         LocalDate dataSolicitacao,
         String status,
-        HashMap<String, Double> materiais
+        HashMap<String, BigDecimal> materiais
 ) {
 }

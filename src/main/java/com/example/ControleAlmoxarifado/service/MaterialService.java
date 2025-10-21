@@ -29,14 +29,6 @@ public class MaterialService {
             throw new RuntimeException("O nome do material já existe!");
         }
 
-        if(requisicaoDTO.nome() == null){
-            throw new RuntimeException("O nome do material é obrigatório!");
-        }
-
-        if(requisicaoDTO.estoque() < 0){
-            throw new RuntimeException("Valor de estoque inválido");
-        }
-
         Material material = factory.criar(requisicaoDTO);
 
         return mapper.paraRespostaDto(repository.save(material));

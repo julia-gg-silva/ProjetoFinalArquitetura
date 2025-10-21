@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "requisicao-item")
+@Table(name = "requisicao_item")
 public class RequisicaoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +28,10 @@ public class RequisicaoItem {
     private Material material;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private double quantidade;
+    private BigDecimal quantidade;
 
 
-    public RequisicaoItem(Requisicao requisicao, Material material, double quantidade) {
+    public RequisicaoItem(Requisicao requisicao, Material material, BigDecimal quantidade) {
         this.requisicao = requisicao;
         this.material = material;
         this.quantidade = quantidade;

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,10 +28,10 @@ public class NotaEntradaItem {
     @JoinColumn(name = "id_material", nullable = false)
     private Material material;
 
-    @Column(nullable = false)
-    private double quantidade;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal quantidade;
 
-    public NotaEntradaItem(NotaEntrada notaEntrada, Material material, double quantidade) {
+    public NotaEntradaItem(NotaEntrada notaEntrada, Material material, BigDecimal quantidade) {
         this.notaEntrada = notaEntrada;
         this.material = material;
         this.quantidade = quantidade;

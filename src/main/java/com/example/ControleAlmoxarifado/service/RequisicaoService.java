@@ -13,6 +13,7 @@ import com.example.ControleAlmoxarifado.repository.RequisicaoItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +36,7 @@ public class RequisicaoService {
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
         Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
 
-        HashMap<String, Double> nomeMateriais = new HashMap<>();
+        HashMap<String, BigDecimal> nomeMateriais = new HashMap<>();
 
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
             Material material = repositoryMaterial.findById(idMaterial).orElseThrow(() -> {
@@ -49,8 +50,8 @@ public class RequisicaoService {
         return mapper.paraRespostaDTO(requisicao, nomeMateriais);
     }
 
-    public HashMap<String, Double> retornarMateriais(Requisicao requisicao){
-        HashMap<String, Double>  materiais = new HashMap<>();
+    public HashMap<String, BigDecimal> retornarMateriais(Requisicao requisicao){
+        HashMap<String, BigDecimal>  materiais = new HashMap<>();
 
         for(RequisicaoItem item : requisicao.getItens()){
             materiais.put(item.getMaterial().getNome(), item.getQuantidade());
@@ -64,7 +65,7 @@ public class RequisicaoService {
         List<CriacaoRequisicaoRespostaDTO> resposta = new ArrayList<>();
 
         for(Requisicao r : requisicao){
-            HashMap<String, Double> materiais = retornarMateriais(r);
+            HashMap<String, BigDecimal> materiais = retornarMateriais(r);
             resposta.add(mapper.paraRespostaDTO(r, materiais));
         }
 
@@ -76,7 +77,7 @@ public class RequisicaoService {
             throw new RuntimeException("A Requisicao não encontrada!");
         });
 
-        HashMap<String, Double> materiais = retornarMateriais(requisicao);
+        HashMap<String, BigDecimal> materiais = retornarMateriais(requisicao);
 
         return mapper.paraRespostaDTO(requisicao, materiais);
 
@@ -88,7 +89,7 @@ public class RequisicaoService {
             throw new RuntimeException("A Requisicao não encontrada!");
         });
 
-        HashMap<String, Double> materiais = retornarMateriais(requisicao);
+        HashMap<String, BigDecimal> materiais = retornarMateriais(requisicao);
 
         Requisicao newRequisicao = mapper.paraUpdate(requisicaoDTO, requisicao);
         repository.save(newRequisicao);

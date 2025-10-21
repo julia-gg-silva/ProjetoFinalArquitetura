@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.FormatterClosedException;
 import java.util.HashMap;
@@ -15,6 +16,6 @@ public record CriacaoNotaEntradaRequisicaoDTO(
         @Positive(message = "O id do fornecedor tem que ser maior que zero!")
         Fornecedor fornecedor,
         @NotEmpty(message = "A lista de materiais é obrigatória!")
-        HashMap<Long, Double> materiais
+        HashMap<Long, BigDecimal> materiais
 ) {
 }

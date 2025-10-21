@@ -13,12 +13,11 @@ import com.example.ControleAlmoxarifado.repository.NotaEntradaItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
@@ -33,7 +32,7 @@ public class NotaEntradaService {
     public CriacaoNotaEntradaRespostaDTO criar(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO) {
         NotaEntrada notaEntrada = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now()));
 
-        HashMap<String, Double> materiais = new HashMap<>();
+        HashMap<String, BigDecimal> materiais = new HashMap<>();
 
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
             Material material = repositoryMaterial.findById(idMaterial).orElseThrow(() -> {
@@ -52,7 +51,7 @@ public class NotaEntradaService {
         List<CriacaoNotaEntradaRespostaDTO> resposta = new ArrayList<>();
 
         for(NotaEntrada nota : notaEntrada){
-            HashMap<String, Double> materias = retornarMateriais(nota);
+            HashMap<String, BigDecimal> materias = retornarMateriais(nota);
             resposta.add(mapper.paraRespostaDto(nota, materias));
         }
 
@@ -64,13 +63,13 @@ public class NotaEntradaService {
             throw new RuntimeException("Nota de Entrada não encontrada!");
         });
 
-        HashMap<String, Double> materias = retornarMateriais(notaEntrada);
+        HashMap<String, BigDecimal> materias = retornarMateriais(notaEntrada);
 
         return mapper.paraRespostaDto(notaEntrada, materias);
     }
 
-    public HashMap<String, Double> retornarMateriais(NotaEntrada notaEntrada){
-        HashMap<String, Double> materias = new HashMap<>();
+    public HashMap<String, BigDecimal> retornarMateriais(NotaEntrada notaEntrada){
+        HashMap<String, BigDecimal> materias = new HashMap<>();
 
         for(NotaEntradaItem item : notaEntrada.getItens()){
             materias.put(item.getMaterial().getNome(), item.getQuantidade());
@@ -84,7 +83,7 @@ public class NotaEntradaService {
             throw new RuntimeException("Nota de Entrada não encontrada!");
         });
 
-        HashMap<String, Double> materias = retornarMateriais(notaEntrada);
+        HashMap<String, BigDecimal> materias = retornarMateriais(notaEntrada);
 
         NotaEntrada newNotaEntrada = mapper.paraUpdate(requisicaoDTO, notaEntrada);
         repository.save(newNotaEntrada);

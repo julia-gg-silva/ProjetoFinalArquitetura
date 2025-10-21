@@ -28,7 +28,7 @@ public class NotaEntrada {
     @Column(nullable = false)
     private LocalDate dataEntrega;
 
-    @OneToMany(mappedBy = "nota_entrada", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "notaEntrada", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NotaEntradaItem> itens;
 
     public NotaEntrada(Fornecedor fornecedor, LocalDate dataEntrega) {

@@ -25,7 +25,7 @@ public class MaterialMapper {
             material.setUnidade(requisicaoDTO.unidade());
         }
 
-        if(requisicaoDTO.estoque() != material.getEstoque() && requisicaoDTO.estoque() != 0){
+        if(requisicaoDTO.estoque().equals(material.getEstoque())){
             material.setEstoque(requisicaoDTO.estoque());
         }
         return material;

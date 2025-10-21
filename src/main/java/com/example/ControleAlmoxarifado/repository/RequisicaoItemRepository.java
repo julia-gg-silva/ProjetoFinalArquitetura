@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RequisicaoItemRepository extends JpaRepository<RequisicaoItem, Long> {
-    List<RequisicaoItem> findByRequisicao(Long requisicao);
-
 
 }

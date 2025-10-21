@@ -5,6 +5,7 @@ import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoResposta
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class RequisicaoMapper {
         return new Requisicao(requisicaoDTO.setor(), dataSolicitacao, status);
     }
 
-    public CriacaoRequisicaoRespostaDTO paraRespostaDTO(Requisicao requisicao, HashMap<String, Double> materiais){
+    public CriacaoRequisicaoRespostaDTO paraRespostaDTO(Requisicao requisicao, HashMap<String, BigDecimal> materiais){
         return new CriacaoRequisicaoRespostaDTO(
                 requisicao.getId(), requisicao.getSetor(),
                 requisicao.getDataSolicitacao(), requisicao.getStatus(),

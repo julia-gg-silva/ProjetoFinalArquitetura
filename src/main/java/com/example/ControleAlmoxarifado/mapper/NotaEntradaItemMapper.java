@@ -7,12 +7,13 @@ import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 @Component
 public class NotaEntradaItemMapper {
 
-    public NotaEntradaItem paraEntidade(NotaEntrada notaEntrada, Material material, double quantidade){
+    public NotaEntradaItem paraEntidade(NotaEntrada notaEntrada, Material material, BigDecimal quantidade){
         return new NotaEntradaItem(notaEntrada, material, quantidade);
     }
 }

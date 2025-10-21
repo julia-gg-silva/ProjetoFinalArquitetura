@@ -5,6 +5,7 @@ import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespos
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -15,7 +16,7 @@ public class NotaEntradaMapper {
         return new NotaEntrada(requisicaoDTO.fornecedor(), dataEntrada);
     }
 
-    public CriacaoNotaEntradaRespostaDTO paraRespostaDto(NotaEntrada notaEntrada, HashMap<String, Double> materiais){
+    public CriacaoNotaEntradaRespostaDTO paraRespostaDto(NotaEntrada notaEntrada, HashMap<String, BigDecimal> materiais){
         return new CriacaoNotaEntradaRespostaDTO(notaEntrada.getId(),
                 notaEntrada.getFornecedor(),
                 notaEntrada.getDataEntrega(),

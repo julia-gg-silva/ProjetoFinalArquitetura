@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.math.BigDecimal;
+
 public record CriacaoMaterialRequisicaoDTO(
         @NotBlank(message = "O nome é obrigatório!")
         String nome,
@@ -12,6 +14,6 @@ public record CriacaoMaterialRequisicaoDTO(
         String unidade,
         @NotNull(message = "O valor do estoque é obrigatório!")
         @PositiveOrZero(message = "O valor do estoque não pode ser negativo!")
-        double estoque
+        BigDecimal estoque
 ) {
 }
