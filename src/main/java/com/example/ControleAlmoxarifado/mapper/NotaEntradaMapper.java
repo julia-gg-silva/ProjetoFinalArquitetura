@@ -5,12 +5,13 @@ import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespos
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 @Component
 public class NotaEntradaMapper {
 
-    public NotaEntrada paraEntidade(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO){
+    public NotaEntrada paraEntidade(CriacaoNotaEntradaRequisicaoDTO requisicaoDTO, LocalDate dataEntrada){
         return new NotaEntrada(requisicaoDTO.fornecedor(), requisicaoDTO.dataEntrada());
     }
 
