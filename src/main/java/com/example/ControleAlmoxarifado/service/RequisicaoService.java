@@ -7,6 +7,7 @@ import com.example.ControleAlmoxarifado.mapper.RequisicaoMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;
+import com.example.ControleAlmoxarifado.observer.AtualizarEstoqueObserver;
 import com.example.ControleAlmoxarifado.observer.RequisicaoEventManager;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoRepository;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class RequisicaoService {
 
     private RequisicaoRepository repository;
@@ -31,8 +31,18 @@ public class RequisicaoService {
     private MaterialRepository repositoryMaterial;
     private RequisicaoMapper mapper;
     private RequisicaoItemMapper itemMapper;
-    private final RequisicaoEventManager eventManager;
+    private RequisicaoEventManager eventManager;
 
+    public RequisicaoService(RequisicaoRepository repository, RequisicaoItemRepository repositoryItem, MaterialRepository repositoryMaterial, RequisicaoMapper mapper, RequisicaoItemMapper itemMapper) {
+        this.repository = repository;
+        this.repositoryItem = repositoryItem;
+        this.repositoryMaterial = repositoryMaterial;
+        this.mapper = mapper;
+        this.itemMapper = itemMapper;
+
+        this.eventManager = new RequisicaoEventManager();
+        eventManager.registrarObserver(new AtualizarEstoqueObserver(repositoryMaterial));
+    }
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
         Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
