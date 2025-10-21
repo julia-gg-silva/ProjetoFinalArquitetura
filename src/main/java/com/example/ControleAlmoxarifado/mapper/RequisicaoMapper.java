@@ -22,4 +22,17 @@ public class RequisicaoMapper {
                 requisicao.getDataSolicitacao(), requisicao.getStatus(),
                 materiais);
     }
+
+    public Requisicao paraUpdate(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, Requisicao requisicao){
+
+        if(!requisicaoDTO.status().equals(requisicao.getStatus())){
+            requisicao.setStatus(requisicaoDTO.status());
+        }
+
+        if(!requisicaoDTO.setor().equals(requisicao.getSetor())){
+            requisicao.setSetor(requisicaoDTO.setor());
+        }
+
+        return requisicao;
+    }
 }

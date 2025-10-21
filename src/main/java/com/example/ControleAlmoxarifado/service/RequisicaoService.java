@@ -10,15 +10,18 @@ import com.example.ControleAlmoxarifado.model.RequisicaoItem;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoItemRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class RequisicaoService {
 
     private RequisicaoRepository repository;
@@ -28,46 +31,44 @@ public class RequisicaoService {
     private RequisicaoItemMapper itemMapper;
 
 
-    public RequisicaoService(RequisicaoRepository repository, RequisicaoMapper mapper, RequisicaoItemRepository itemRepository) {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.repositoryItem = itemRepository;
-    }
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
         Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
+
         HashMap<String, Double> nomeMateriais = new HashMap<>();
 
         requisicaoDTO.materiais().forEach((idMaterial, quantidade) -> {
-            repositoryItem.save(itemMapper.paraEntidade(requisicao.getId(), idMaterial, quantidade));
-            List<Material> material = repositoryMaterial.findAllById(Collections.singleton(idMaterial));
-            List<String> nomesMaterias = material.stream()
-                    .map(Material::getNome)
-                    .toList();
+            Material material = repositoryMaterial.findById(idMaterial).orElseThrow(() -> {
+               throw new RuntimeException("Material não encontrado!");
+            });
+            repositoryItem.save(itemMapper.paraEntidade(requisicao, material, quantidade));
 
-            for (String s : nomesMaterias) {
-                nomeMateriais.put(s, quantidade);
-            }
+            nomeMateriais.put(material.getNome(), quantidade);
         });
 
         return mapper.paraRespostaDTO(requisicao, nomeMateriais);
     }
 
+    public HashMap<String, Double> retornarMateriais(Requisicao requisicao){
+        HashMap<String, Double>  materiais = new HashMap<>();
+
+        for(RequisicaoItem item : requisicao.getItens()){
+            materiais.put(item.getMaterial().getNome(), item.getQuantidade());
+        }
+
+        return materiais;
+    }
+
     public List<CriacaoRequisicaoRespostaDTO> buscarTodos() {
         List<Requisicao> requisicao = repository.findAll();
+        List<CriacaoRequisicaoRespostaDTO> resposta = new ArrayList<>();
 
-        return requisicao.stream()
-                .map(r -> {
-                    HashMap<String, Double> nomeMateriais = new HashMap<>();
-                    List<RequisicaoItem> itens = repositoryItem.findByRequisicao(r.getId());
+        for(Requisicao r : requisicao){
+            HashMap<String, Double> materiais = retornarMateriais(r);
+            resposta.add(mapper.paraRespostaDTO(r, materiais));
+        }
 
-                    for (RequisicaoItem item : itens) {
-                        nomeMateriais.put(item.getMaterial().getNome(), item.getQuantidade());
-                    }
-
-                    return mapper.paraRespostaDTO(r, nomeMateriais);
-                })
-                .collect(Collectors.toList());
+        return resposta;
     }
 
     public CriacaoRequisicaoRespostaDTO buscarPorId(Long id) {
@@ -75,15 +76,32 @@ public class RequisicaoService {
             throw new RuntimeException("A Requisicao não encontrada!");
         });
 
+        HashMap<String, Double> materiais = retornarMateriais(requisicao);
+
+        return mapper.paraRespostaDTO(requisicao, materiais);
+
     }
 
 
     public CriacaoRequisicaoRespostaDTO atualizar(Long id, CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
+        Requisicao requisicao = repository.findById(id).orElseThrow(() ->{
+            throw new RuntimeException("A Requisicao não encontrada!");
+        });
 
+        HashMap<String, Double> materiais = retornarMateriais(requisicao);
+
+        Requisicao newRequisicao = mapper.paraUpdate(requisicaoDTO, requisicao);
+        repository.save(newRequisicao);
+        return mapper.paraRespostaDTO(newRequisicao, materiais);
     }
 
 
     public void deletar(Long id) {
+        Requisicao requisicao = repository.findById(id).orElseThrow(() ->{
+            throw new RuntimeException("A Requisicao não encontrada!");
+        });
+
+        repository.deleteById(id);
 
     }
 
