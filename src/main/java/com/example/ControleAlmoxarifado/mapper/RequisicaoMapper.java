@@ -25,13 +25,8 @@ public class RequisicaoMapper {
     }
 
     public Requisicao paraUpdate(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, Requisicao requisicao){
-
-        if(!requisicaoDTO.status().equals(requisicao.getStatus())){
+        if(!requisicaoDTO.status().equals(requisicao.getStatus()) && requisicaoDTO.status().equals("PENDENTE")){
             requisicao.setStatus(requisicaoDTO.status());
-        }
-
-        if(!requisicaoDTO.setor().equals(requisicao.getSetor())){
-            requisicao.setSetor(requisicaoDTO.setor());
         }
 
         return requisicao;

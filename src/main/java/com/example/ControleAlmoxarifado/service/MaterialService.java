@@ -6,23 +6,19 @@ import com.example.ControleAlmoxarifado.factory.MaterialFactory;
 import com.example.ControleAlmoxarifado.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MaterialService {
 
     private MaterialRepository repository;
     private MaterialMapper mapper;
     private MaterialFactory factory;
-
-    public MaterialService(MaterialRepository repository, MaterialMapper mapper, MaterialFactory factory) {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.factory = factory;
-    }
 
     public CriacaoMaterialRespostaDTO criar(CriacaoMaterialRequisicaoDTO requisicaoDTO){
         if(repository.existsByNome(requisicaoDTO.nome())){

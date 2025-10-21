@@ -7,6 +7,7 @@ import com.example.ControleAlmoxarifado.mapper.RequisicaoMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;
+import com.example.ControleAlmoxarifado.observer.RequisicaoEventManager;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoItemRepository;
@@ -30,7 +31,7 @@ public class RequisicaoService {
     private MaterialRepository repositoryMaterial;
     private RequisicaoMapper mapper;
     private RequisicaoItemMapper itemMapper;
-
+    private final RequisicaoEventManager eventManager;
 
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
@@ -89,7 +90,13 @@ public class RequisicaoService {
             throw new RuntimeException("A Requisicao não encontrada!");
         });
 
+        if (!requisicao.getStatus().equals("PENDENTE")) {
+            throw new RuntimeException("A requisição já foi atendida.");
+        }
+
         HashMap<String, BigDecimal> materiais = retornarMateriais(requisicao);
+
+        eventManager.notificar(requisicao);
 
         Requisicao newRequisicao = mapper.paraUpdate(requisicaoDTO, requisicao);
         repository.save(newRequisicao);
