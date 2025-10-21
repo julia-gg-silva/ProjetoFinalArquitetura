@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public record CriacaoNotaEntradaRespostaDTO(
         Long id,
-        Fornecedor fornecedor,
+        String nomeFornecedor,
         LocalDate dataEntrada,
         HashMap<String, BigDecimal> materiais
 ){

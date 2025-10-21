@@ -18,7 +18,7 @@ public class NotaEntradaMapper {
 
     public CriacaoNotaEntradaRespostaDTO paraRespostaDto(NotaEntrada notaEntrada, HashMap<String, BigDecimal> materiais){
         return new CriacaoNotaEntradaRespostaDTO(notaEntrada.getId(),
-                notaEntrada.getFornecedor(),
+                notaEntrada.getFornecedor().getNome(),
                 notaEntrada.getDataEntrega(),
                 materiais);
     }
