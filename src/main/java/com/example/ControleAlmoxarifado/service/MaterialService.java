@@ -25,7 +25,7 @@ public class MaterialService {
     }
 
     public CriacaoMaterialRespostaDTO criar(CriacaoMaterialRequisicaoDTO requisicaoDTO){
-        if(repository.getByNome(requisicaoDTO.nome())){
+        if(repository.existsByNome(requisicaoDTO.nome())){
             throw new RuntimeException("O nome do material já existe!");
         }
 
