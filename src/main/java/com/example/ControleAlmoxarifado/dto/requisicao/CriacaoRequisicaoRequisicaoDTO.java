@@ -14,6 +14,8 @@ public record CriacaoRequisicaoRequisicaoDTO(
         String setor,
 
         @NotEmpty(message = "A lista de materiais não pode ser vazia!")
-        HashMap<Long, Double> materiais
+        HashMap<Long, Double> materiais,
+
+        String status
 ) {
 }
