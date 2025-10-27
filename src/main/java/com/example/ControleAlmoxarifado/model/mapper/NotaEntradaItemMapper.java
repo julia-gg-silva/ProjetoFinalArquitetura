@@ -1,14 +1,11 @@
-package com.example.ControleAlmoxarifado.mapper;
+package com.example.ControleAlmoxarifado.model.mapper;
 
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 
 @Component
 public class NotaEntradaItemMapper {

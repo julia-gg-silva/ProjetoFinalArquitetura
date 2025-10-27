@@ -1,7 +1,6 @@
-package com.example.ControleAlmoxarifado.mapper;
+package com.example.ControleAlmoxarifado.model.mapper;
 
-import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRespostaDTO;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;

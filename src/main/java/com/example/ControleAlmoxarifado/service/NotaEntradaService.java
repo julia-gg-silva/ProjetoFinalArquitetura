@@ -1,9 +1,9 @@
 package com.example.ControleAlmoxarifado.service;
 
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
-import com.example.ControleAlmoxarifado.mapper.NotaEntradaItemMapper;
-import com.example.ControleAlmoxarifado.mapper.NotaEntradaMapper;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
+import com.example.ControleAlmoxarifado.model.mapper.NotaEntradaItemMapper;
+import com.example.ControleAlmoxarifado.model.mapper.NotaEntradaMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import com.example.ControleAlmoxarifado.model.NotaEntradaItem;

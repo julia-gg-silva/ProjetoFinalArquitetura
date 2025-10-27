@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.controller;
 
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
 import com.example.ControleAlmoxarifado.service.NotaEntradaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

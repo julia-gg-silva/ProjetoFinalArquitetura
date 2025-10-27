@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.dto.material;
+package com.example.ControleAlmoxarifado.model.dto.material;
 
 import java.math.BigDecimal;
 

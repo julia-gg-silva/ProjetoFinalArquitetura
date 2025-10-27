@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.design_patterns.creational.factory;
 
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
-import com.example.ControleAlmoxarifado.mapper.MaterialMapper;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import org.springframework.stereotype.Component;
 

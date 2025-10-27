@@ -1,14 +1,13 @@
 package com.example.ControleAlmoxarifado.controller;
 
-import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.fornecedor.CriacaoFornecedorRespostaDTO;
 import com.example.ControleAlmoxarifado.service.FornecedorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

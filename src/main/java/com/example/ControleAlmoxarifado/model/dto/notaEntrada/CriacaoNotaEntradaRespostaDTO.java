@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.dto.notaEntrada;
+package com.example.ControleAlmoxarifado.model.dto.notaEntrada;
 
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 

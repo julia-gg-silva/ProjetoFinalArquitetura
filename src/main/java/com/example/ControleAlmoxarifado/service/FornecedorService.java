@@ -1,9 +1,9 @@
 package com.example.ControleAlmoxarifado.service;
 
-import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.fornecedor.CriacaoFornecedorRespostaDTO;
 import com.example.ControleAlmoxarifado.design_patterns.creational.factory.FornecedorFactory;
-import com.example.ControleAlmoxarifado.mapper.FornecedorMapper;
+import com.example.ControleAlmoxarifado.model.mapper.FornecedorMapper;
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 import com.example.ControleAlmoxarifado.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;

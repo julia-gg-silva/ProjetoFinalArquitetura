@@ -1,7 +1,7 @@
-package com.example.ControleAlmoxarifado.mapper;
+package com.example.ControleAlmoxarifado.model.mapper;
 
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.notaEntrada.CriacaoNotaEntradaRespostaDTO;
 import com.example.ControleAlmoxarifado.model.NotaEntrada;
 import org.springframework.stereotype.Component;
 

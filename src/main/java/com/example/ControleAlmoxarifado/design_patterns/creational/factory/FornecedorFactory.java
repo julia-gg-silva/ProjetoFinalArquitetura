@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.design_patterns.creational.factory;
 
-import com.example.ControleAlmoxarifado.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
-import com.example.ControleAlmoxarifado.mapper.FornecedorMapper;
+import com.example.ControleAlmoxarifado.model.dto.fornecedor.CriacaoFornecedorRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.mapper.FornecedorMapper;
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 import org.springframework.stereotype.Component;
 

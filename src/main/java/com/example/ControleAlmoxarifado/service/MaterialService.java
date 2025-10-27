@@ -1,9 +1,9 @@
 package com.example.ControleAlmoxarifado.service;
 
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRespostaDTO;
 import com.example.ControleAlmoxarifado.design_patterns.creational.factory.MaterialFactory;
-import com.example.ControleAlmoxarifado.mapper.MaterialMapper;
+import com.example.ControleAlmoxarifado.model.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.controller;
 
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRespostaDTO;
 import com.example.ControleAlmoxarifado.service.MaterialService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.dto.requisicao;
+package com.example.ControleAlmoxarifado.model.dto.requisicao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

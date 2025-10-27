@@ -1,7 +1,7 @@
-package com.example.ControleAlmoxarifado.mapper;
+package com.example.ControleAlmoxarifado.model.mapper;
 
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRespostaDTO;
 import com.example.ControleAlmoxarifado.model.Material;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.example.ControleAlmoxarifado.controller;
 
-import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoRequisicaoDTO;
-import com.example.ControleAlmoxarifado.dto.requisicao.CriacaoRequisicaoRespostaDTO;
+import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRequisicaoDTO;
+import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRespostaDTO;
 import com.example.ControleAlmoxarifado.service.RequisicaoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

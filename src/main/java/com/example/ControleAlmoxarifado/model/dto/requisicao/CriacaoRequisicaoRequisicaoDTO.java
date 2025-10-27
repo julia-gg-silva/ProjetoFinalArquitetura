@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.dto.requisicao;
+package com.example.ControleAlmoxarifado.model.dto.requisicao;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

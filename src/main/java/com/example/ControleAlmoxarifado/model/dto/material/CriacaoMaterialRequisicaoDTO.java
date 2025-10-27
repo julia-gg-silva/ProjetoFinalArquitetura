@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.dto.material;
+package com.example.ControleAlmoxarifado.model.dto.material;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
