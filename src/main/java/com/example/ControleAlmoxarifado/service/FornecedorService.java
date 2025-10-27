@@ -26,7 +26,7 @@ public class FornecedorService {
             throw new RuntimeException("CNPJ já cadastrado!");
         }
 
-        // criando o fornecedor com factory
+        // criando o fornecedor com factory.
         Fornecedor fornecedor = factory.criar(requisicaoDTO);
 
         return mapper.paraRespostaDTO(repository.save(fornecedor));
