@@ -7,21 +7,18 @@ import com.example.ControleAlmoxarifado.mapper.RequisicaoMapper;
 import com.example.ControleAlmoxarifado.model.Material;
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;
-import com.example.ControleAlmoxarifado.observer.AtualizarEstoqueObserver;
-import com.example.ControleAlmoxarifado.observer.RequisicaoEventManager;
+import com.example.ControleAlmoxarifado.design_patterns.behavioral.observer.AtualizarEstoqueObserver;
+import com.example.ControleAlmoxarifado.design_patterns.behavioral.observer.RequisicaoEventManager;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoRepository;
 import com.example.ControleAlmoxarifado.repository.RequisicaoItemRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RequisicaoService {

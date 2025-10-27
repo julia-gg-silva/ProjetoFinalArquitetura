@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.factory;
+package com.example.ControleAlmoxarifado.design_patterns.creational.factory;
 
 import com.example.ControleAlmoxarifado.dto.material.CriacaoMaterialRequisicaoDTO;
 import com.example.ControleAlmoxarifado.mapper.MaterialMapper;

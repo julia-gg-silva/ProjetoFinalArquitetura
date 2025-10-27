@@ -1,12 +1,10 @@
-package com.example.ControleAlmoxarifado.observer;
+package com.example.ControleAlmoxarifado.design_patterns.behavioral.observer;
 
 import com.example.ControleAlmoxarifado.model.Requisicao;
 import com.example.ControleAlmoxarifado.model.RequisicaoItem;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 @AllArgsConstructor

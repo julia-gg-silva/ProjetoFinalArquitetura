@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.adapter;
+package com.example.ControleAlmoxarifado.design_patterns.structural.adapter;
 
 import com.example.ControleAlmoxarifado.model.Fornecedor;
 import com.example.ControleAlmoxarifado.model.Material;

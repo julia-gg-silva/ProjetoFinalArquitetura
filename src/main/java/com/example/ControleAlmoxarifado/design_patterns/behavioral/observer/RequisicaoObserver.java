@@ -1,4 +1,4 @@
-package com.example.ControleAlmoxarifado.observer;
+package com.example.ControleAlmoxarifado.design_patterns.behavioral.observer;
 
 import com.example.ControleAlmoxarifado.model.Requisicao;
 
