@@ -13,7 +13,6 @@ import java.util.List;
 public class ListaExcelMaterialAdapter {
 
     private final List<ExcelMaterial> materiaisExcel;
-    private final List<ExcelMaterial> fornecedoresExcel;
 
     public List<Material> toMateriais(){
         return materiaisExcel.stream()
@@ -22,7 +21,7 @@ public class ListaExcelMaterialAdapter {
     }
 
     public List<Fornecedor> toFornecedores(){
-        return fornecedoresExcel.stream()
+        return materiaisExcel.stream()
                 .map(fornecedor -> new ExcelMaterialAdapter(fornecedor).toFornecedor())
                 .toList();
     }

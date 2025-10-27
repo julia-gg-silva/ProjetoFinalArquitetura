@@ -1,10 +1,14 @@
 package com.example.ControleAlmoxarifado.service;
 
+import com.example.ControleAlmoxarifado.design_patterns.structural.adapter.ListaExcelMaterialAdapter;
+import com.example.ControleAlmoxarifado.model.ExcelMaterial;
+import com.example.ControleAlmoxarifado.model.Fornecedor;
 import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRequisicaoDTO;
 import com.example.ControleAlmoxarifado.model.dto.material.CriacaoMaterialRespostaDTO;
 import com.example.ControleAlmoxarifado.design_patterns.creational.factory.MaterialFactory;
 import com.example.ControleAlmoxarifado.model.mapper.MaterialMapper;
 import com.example.ControleAlmoxarifado.model.Material;
+import com.example.ControleAlmoxarifado.repository.FornecedorRepository;
 import com.example.ControleAlmoxarifado.repository.MaterialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,7 @@ public class MaterialService {
     private MaterialRepository repository;
     private MaterialMapper mapper;
     private MaterialFactory factory;
+    private FornecedorRepository repositoryFornecedor;
 
     public CriacaoMaterialRespostaDTO criar(CriacaoMaterialRequisicaoDTO requisicaoDTO){
         if(repository.existsByNome(requisicaoDTO.nome())){
@@ -56,5 +61,14 @@ public class MaterialService {
                 new RuntimeException("Material não existe!"));
 
         repository.delete(material);
+    }
+
+    public void importarMateriaisExcel(List<ExcelMaterial> excelMateriais){
+        ListaExcelMaterialAdapter adapter = new ListaExcelMaterialAdapter(excelMateriais);
+        List<Material> materiais = adapter.toMateriais();
+        List<Fornecedor> fornecedores = adapter.toFornecedores();
+
+        repository.saveAll(materiais);
+        repositoryFornecedor.saveAll(fornecedores);
     }
 }
