@@ -1,5 +1,6 @@
 package com.example.ControleAlmoxarifado.model.dto.requisicao;
 
+import com.example.ControleAlmoxarifado.model.StatusRequisicao;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
@@ -13,6 +14,6 @@ public record CriacaoRequisicaoRequisicaoDTO(
         @NotEmpty(message = "A lista de materiais não pode ser vazia!")
         HashMap<Long, BigDecimal> materiais,
 
-        String status
+        StatusRequisicao status
 ) {
 }

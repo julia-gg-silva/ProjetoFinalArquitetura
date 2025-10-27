@@ -1,5 +1,6 @@
 package com.example.ControleAlmoxarifado.service;
 
+import com.example.ControleAlmoxarifado.model.StatusRequisicao;
 import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRequisicaoDTO;
 import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRespostaDTO;
 import com.example.ControleAlmoxarifado.model.mapper.RequisicaoItemMapper;
@@ -42,7 +43,7 @@ public class RequisicaoService {
     }
 
     public CriacaoRequisicaoRespostaDTO criar(CriacaoRequisicaoRequisicaoDTO requisicaoDTO) {
-        Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), "PENDENTE"));
+        Requisicao requisicao = repository.save(mapper.paraEntidade(requisicaoDTO, LocalDate.now(), StatusRequisicao.PENDENTE));
 
         HashMap<String, BigDecimal> nomeMateriais = new HashMap<>();
 
@@ -97,7 +98,7 @@ public class RequisicaoService {
             throw new RuntimeException("A Requisicao não encontrada!");
         });
 
-        if (!requisicao.getStatus().equals("PENDENTE")) {
+        if (!requisicao.getStatus().equals(StatusRequisicao.PENDENTE)) {
             throw new RuntimeException("A requisição já foi atendida.");
         }
 
@@ -112,12 +113,11 @@ public class RequisicaoService {
 
 
     public void deletar(Long id) {
-        Requisicao requisicao = repository.findById(id).orElseThrow(() ->{
+        if(!repository.existsById(id)){
             throw new RuntimeException("A Requisicao não encontrada!");
-        });
+        }
 
         repository.deleteById(id);
-
     }
 
 }

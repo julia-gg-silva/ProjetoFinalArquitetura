@@ -1,5 +1,6 @@
 package com.example.ControleAlmoxarifado.model.mapper;
 
+import com.example.ControleAlmoxarifado.model.StatusRequisicao;
 import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRequisicaoDTO;
 import com.example.ControleAlmoxarifado.model.dto.requisicao.CriacaoRequisicaoRespostaDTO;
 import com.example.ControleAlmoxarifado.model.Requisicao;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class RequisicaoMapper {
 
 
-    public Requisicao paraEntidade(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, LocalDate dataSolicitacao, String status){
+    public Requisicao paraEntidade(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, LocalDate dataSolicitacao, StatusRequisicao status){
         return new Requisicao(requisicaoDTO.setor(), dataSolicitacao, status);
     }
 
@@ -25,7 +26,7 @@ public class RequisicaoMapper {
     }
 
     public Requisicao paraUpdate(CriacaoRequisicaoRequisicaoDTO requisicaoDTO, Requisicao requisicao){
-        if(!requisicaoDTO.status().equals(requisicao.getStatus()) && requisicaoDTO.status().equals("PENDENTE")){
+        if(!requisicaoDTO.status().equals(requisicao.getStatus())){
             requisicao.setStatus(requisicaoDTO.status());
         }
 

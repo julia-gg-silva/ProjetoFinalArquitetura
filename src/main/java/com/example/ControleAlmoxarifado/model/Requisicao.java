@@ -30,12 +30,13 @@ public class Requisicao {
     private LocalDate dataSolicitacao;
 
     @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusRequisicao status;
 
     @OneToMany(mappedBy = "requisicao", cascade = CascadeType.ALL)
     private List<RequisicaoItem> itens;
 
-    public Requisicao(String setor, LocalDate dataSolicitacao, String status) {
+    public Requisicao(String setor, LocalDate dataSolicitacao, StatusRequisicao status) {
         this.setor = setor;
         this.dataSolicitacao = dataSolicitacao;
         this.status = status;
