@@ -38,7 +38,9 @@ public class RequisicaoService {
         this.mapper = mapper;
         this.itemMapper = itemMapper;
 
+        // recebe a classe com a lista dos observadores
         this.eventManager = new RequisicaoEventManager();
+        // ele cria o atualizar estoque como observador e adiciona na lista
         eventManager.registrarObserver(new AtualizarEstoqueObserver(repositoryMaterial));
     }
 
@@ -104,6 +106,7 @@ public class RequisicaoService {
 
         HashMap<String, BigDecimal> materiais = retornarMateriais(requisicao);
 
+        // chama o notificador para notificar os observers e passa a requisicao
         eventManager.notificar(requisicao);
 
         Requisicao newRequisicao = mapper.paraUpdate(requisicaoDTO, requisicao);
