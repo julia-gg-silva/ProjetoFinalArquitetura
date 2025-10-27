@@ -64,11 +64,16 @@ public class MaterialService {
         repository.delete(material);
     }
 
+    // recebendo a lista das linhas das planilhas
     public void importarMateriaisExcel(List<ExcelMaterial> excelMateriais){
+        // criando a lista de materiais
         ListaExcelMaterialAdapter adapter = new ListaExcelMaterialAdapter(excelMateriais);
+        // convertendo os materiais
         List<Material> materiais = adapter.toMateriais();
+        // convertendo os fornecedores
         List<Fornecedor> fornecedores = adapter.toFornecedores();
 
+        // salvando a lista no banco
         repository.saveAll(materiais);
         repositoryFornecedor.saveAll(fornecedores);
     }
