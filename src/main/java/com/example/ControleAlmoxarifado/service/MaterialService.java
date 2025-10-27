@@ -29,6 +29,7 @@ public class MaterialService {
             throw new RuntimeException("O nome do material já existe!");
         }
 
+        // criando o material com factory
         Material material = factory.criar(requisicaoDTO);
 
         return mapper.paraRespostaDto(repository.save(material));
