@@ -10,6 +10,7 @@ public class MaterialFactory implements EntityFactory<Material, CriacaoMaterialR
 
     private final MaterialMapper mapper;
 
+    // recebe o mapper para converter a material para entidade
     public MaterialFactory(MaterialMapper mapper) {
         this.mapper = mapper;
     }
