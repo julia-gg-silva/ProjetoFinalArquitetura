@@ -7,17 +7,16 @@ Atualmente, a gestão de materiais, fornecedores e requisições é feita manual
 - Atrasos no atendimento de requisições
 - Falta de rastreabilidade de entradas e saídas  
 
-Para resolver isso, será desenvolvido um **protótipo funcional em Java com JDBC**, estruturado em camadas, que permita gerenciar fornecedores, materiais, notas de entrada e requisições.  
+Para resolver isso, será desenvolvido um **protótipo funcional em Java com JPA**, estruturado em camadas, que permita gerenciar fornecedores, materiais, notas de entrada e requisições.  
 Esse protótipo será a base para futuros sistemas corporativos mais robustos, podendo futuramente se integrar a sensores de estoque automatizados e sistemas ERP.  
 
 ---
 
 ## ⚙️ Funcionalidades Mínimas
-- ✅ **Separação de responsabilidades**: camadas Model, DAO, Service e View/Menu  
-- ✅ **Persistência de dados com JDBC** (MySQL)  
-- ✅ **Padrões de projeto**: DAO para acesso a dados, Singleton para conexão com banco  
-- ✅ **Controle de estoque** integrado às entradas e requisições  
-- ✅ **Estrutura preparada para expansão** com sensores IoT ou sistemas ERP  
+- ✅ **Separação de responsabilidades**: camadas Model, Repository, Service e Controller
+- ✅ **Persistência de dados com JPA** (MySQL)  
+- ✅ **Padrões de projeto**: Repository para acesso a dados 
+- ✅ **Controle de estoque** integrado às entradas e requisições
 
 ---
 
@@ -67,30 +66,13 @@ Esse protótipo será a base para futuros sistemas corporativos mais robustos, p
 - Efeitos:  
   - Estoque reduzido  
   - Status atualizado para **ATENDIDA**  
-  - Se não houver estoque → erro e status mantido **PENDENTE**  
-
----
-
-## ⭐ Diferenciais Possíveis
-### 🔎 Consulta de Histórico
-- Consultar entradas, requisições e movimentações de estoque  
-- Filtros por:  
-  - Data  
-  - Fornecedor  
-  - Setor solicitante  
-  - Status da requisição  
+  - Se não houver estoque → erro e status mantido **PENDENTE** 
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 - Java  
-- JDBC  
+- JPA
+- SPRING BOOT
 - MySQL  
-- Padrão DAO / MVC  
-
----
-
-## 🚀 Futuras Expansões
-- Integração com **sensores IoT** para monitoramento automático de estoque  
-- Integração com sistemas ERP  
-- Controle de usuários com **níveis de acesso (comum / administrador)**  
+- Padrão MVC   
