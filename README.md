@@ -15,7 +15,7 @@ Esse protótipo será a base para futuros sistemas corporativos mais robustos, p
 ## ⚙️ Funcionalidades Mínimas
 - ✅ **Separação de responsabilidades**: camadas Model, Repository, Service e Controller
 - ✅ **Persistência de dados com JPA** (MySQL)  
-- ✅ **Padrões de projeto**: Repository para acesso a dados 
+- ✅ **Padrões de projeto**: Factory Method, Observer, Adapter
 - ✅ **Controle de estoque** integrado às entradas e requisições
 
 ---
