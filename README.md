@@ -12,7 +12,7 @@ Esse protótipo será a base para futuros sistemas corporativos mais robustos, p
 
 ---
 
-## ⚙️ Funcionalidades Mínimas
+## Funcionalidades Mínimas
 - **Separação de responsabilidades**: camadas Model, Repository, Service e Controller
 - **Persistência de dados com JPA** (MySQL)  
 - **Padrões de projeto**: Factory Method, Observer, Adapter
@@ -103,7 +103,7 @@ Primeiro, clone o repositório do projeto em sua máquina local:
 git clone https://github.com/seu-usuario/seu-repositorio.git
 ```
 
-###2. Configurar o Banco de Dados
+### 2. Configurar o Banco de Dados
 
 Certifique-se de que o MySQL ou o banco de dados de sua escolha esteja instalado e configurado corretamente. Para o MySQL, crie um banco de dados para o projeto com o nome almoxarifado:
 
@@ -122,14 +122,14 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-###3. Importar o Projeto na IDE
+### 3. Importar o Projeto na IDE
 
 - Abra sua IDE (exemplo: IntelliJ IDEA ou Spring Tool Suite).
 - Importe o projeto como um projeto Maven ou Gradle, dependendo da configuração do seu repositório.
 - Aguarde a IDE baixar todas as dependências necessárias.
 
 
-###4. Rodar a Aplicação
+### 4. Rodar a Aplicação
 
 Para rodar o sistema:
 
@@ -142,7 +142,7 @@ mvn spring-boot:run
 ```
 
 
-###5. Testar os Endpoints com o Postman
+### 5. Testar os Endpoints com o Postman
 
 Agora que o sistema está rodando, você pode testar os endpoints da API utilizando o Postman.
 
@@ -152,7 +152,7 @@ Agora que o sistema está rodando, você pode testar os endpoints da API utiliza
 - Certifique-se de que o servidor está em execução (geralmente na URL http://localhost:8081).
 - Teste cada endpoint para garantir que está funcionando corretamente.
 
-###6. Conclusão
+### 6. Conclusão
 
 Após seguir esses passos, seu ambiente de desenvolvimento estará pronto e você poderá fazer modificações, testar a API e desenvolver novas funcionalidades.
 
