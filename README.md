@@ -100,7 +100,7 @@ Antes de começar, você precisará instalar os seguintes softwares:
 Primeiro, clone o repositório do projeto em sua máquina local:
 
 ```bash
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/julia-gg-silva/ProjetoFinalArquitetura.git)
+git clone https://github.com/seu-usuario/seu-repositorio.git
 ```
 
 ### 2. Configurar o Banco de Dados
